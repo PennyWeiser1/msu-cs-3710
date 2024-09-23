@@ -50,8 +50,12 @@
 # Node.js
 /node_modules
 /.pnp
+<<<<<<< HEAD
 .pnp.js
 
 # MAC OS
 .DS_Store
 Thumbs.db
+=======
+.pnp.js
+>>>>>>> bdf24fd32b7588ceb6b25425264885add358f35e

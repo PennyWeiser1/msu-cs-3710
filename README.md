@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<<<<<<< HEAD
+=======
+# msu-cs-3710
+# msu-cs-3710
+>>>>>>> bdf24fd32b7588ceb6b25425264885add358f35e

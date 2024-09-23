@@ -73,18 +73,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-<<<<<<< HEAD
 
   # Allow all GitHub Codespaces hosts
   config.hosts << /.*\.app\.github\.dev/
 
 end
-=======
-  
-  # Allow all Github Codespaces hosts
-  config.hosts << /.*\.app\.github\.dev/
-end
-
-
-
->>>>>>> bdf24fd32b7588ceb6b25425264885add358f35e

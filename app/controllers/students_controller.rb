@@ -57,6 +57,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  # GET /students or /students.json
+  def index
+    Rails.logger.info "Params: #{params.inspect}"
+
+    @search_params = params[:search] || {}
+    @students = Student.all
+
+    Rails.logger.info "Search Params: #{@search_params.inspect}"
+
+  if @search_params[:major].present?
+    @students = @students.where(major: @search_params[:major])
+  end
+end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
@@ -67,4 +81,8 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:first_name, :last_name, :school_email, :major, :graduation_date, :profile_picture)
     end
+
+
+
+
 end

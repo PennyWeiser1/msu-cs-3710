@@ -26,10 +26,11 @@
     <%= form.text_field :school_email %>
   </div>
 
-  <div class="field">
+  <div>
     <%= form.label :major, style: "display: block" %>
-    <%= form.text_field :major %>
+    <%= form.select :major, options_for_select(Student::VALID_MAJORS), { prompt: "Select a Major" }, class: "form-control" %>
   </div>
+  # this turns the major select from a free input bar to a dropdown using VALID_MAJORS.
 
   <div class="field">
     <%= form.label :graduation_date, style: "display: block" %>

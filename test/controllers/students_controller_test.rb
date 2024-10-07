@@ -1,5 +1,7 @@
 require "test_helper"
 
+# DELETE THIS FILE LATER
+
 class StudentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @student = students(:one)

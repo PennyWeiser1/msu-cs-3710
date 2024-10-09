@@ -69,6 +69,9 @@ class StudentsController < ApplicationController
   if @search_params[:major].present?
     @students = @students.where(major: @search_params[:major])
   end
+  if @search_params[:graduation_date].present?
+    @students = @students.where(graduation_date: @search_params[:graduation_date])
+  end
 end 
 
   private

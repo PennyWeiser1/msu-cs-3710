@@ -4,11 +4,24 @@
       <%= form.select :major, options_for_select(Student::VALID_MAJORS), { prompt: "Any Major" }, name: 'search[major]', class: "form-control" %>
     </div>
     <div>
+      <%= form.label :beforeafter, "Timeframe", class: "form-label" %>
+      <%= form.select :beforeafter, options_for_select(["Before", "After"]), { prompt: "Exact Date" }, name: 'search[beforeafter]', class: "form-control" %>
+    </div>
+      
+    <div>
       <%= form.label :graduation_date, "Select Graduation Date", class: "form-label" %>
-      <%= form.date_field :graduation_date, name: 'search[graduation_date]', class: "form-control" %>
+      <%= form.date_field :graduation_date, value: params.dig(:search, :graduation_date), name: 'search[graduation_date]', class: "form-control" %>
    
     <div>
       <%= form.submit "Search", class: "btn btn-primary" %>
+    </div>
+    <div>
+      <!-- "Show All" button right here -->
+      <%= link_to "Show All", students_path(show_all: true), class: "btn btn-secondary" %>
+    </div>
+    <div>
+      <!-- "Hide All" button right here -->
+      <%= link_to "Hide All", students_path(hide_all: true), class: "btn btn-secondary" %>
     </div>
    <% end %>
    

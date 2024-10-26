@@ -58,11 +58,13 @@ class StudentsController < ApplicationController
   end
 
   # GET /students or /students.json
+
   def index
     Rails.logger.info "Params: #{params.inspect}"
 
     @search_params = params[:search] || {}
     @students = Student.all
+
 
     Rails.logger.info "Search Params: #{@search_params.inspect}"
 
@@ -70,7 +72,30 @@ class StudentsController < ApplicationController
     @students = @students.where(major: @search_params[:major])
   end
   if @search_params[:graduation_date].present?
-    @students = @students.where(graduation_date: @search_params[:graduation_date])
+    #Print the input date, the input major, and the input timeframe choice
+    Rails.logger.info "#{Date.parse(@search_params[:graduation_date])}"
+    Rails.logger.info "#{@search_params[:major]}"
+    Rails.logger.info "#{@search_params[:beforeafter]}"
+    
+    #sorts by timeframe choice, or only the exact date if timeframe was left at the default. 
+    if @search_params[:beforeafter] == "Before"
+      @students = @students.where("graduation_date <= ?", Date.parse(@search_params[:graduation_date]))
+    elsif @search_params[:beforeafter] == "After"
+      @students = @students.where("graduation_date >= ?", Date.parse(@search_params[:graduation_date]))
+    else
+     @students = @students.where("graduation_date == ?", Date.parse(@search_params[:graduation_date]))
+    end
+  end
+  if (@search_params[:major].present? == false) && (@search_params[:graduation_date].present? == false)
+    # if neither major nor date are supplied when search is pressed, this will ideally throw an error.
+    # for now it just shows none.
+    @students = @students.none
+  end
+  if params[:show_all]
+    @students = Student.all
+  end
+  if params[:hide_all]
+    @students = Student.none
   end
 end 
 
@@ -88,4 +113,5 @@ end
 
 
 
-end
+  end
+

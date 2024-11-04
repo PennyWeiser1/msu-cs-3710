@@ -69,15 +69,16 @@ class StudentsController < ApplicationController
     Rails.logger.info "Search Params: #{@search_params.inspect}"
 
   if @search_params[:major].present?
+    # Print the selected major
+    Rails.logger.info "#{@search_params[:major]}"
     @students = @students.where(major: @search_params[:major])
   end
   if @search_params[:graduation_date].present?
-    #Print the input date, the input major, and the input timeframe choice
+    # Print the selected date and the selected timeframe choice
     Rails.logger.info "#{Date.parse(@search_params[:graduation_date])}"
-    Rails.logger.info "#{@search_params[:major]}"
     Rails.logger.info "#{@search_params[:beforeafter]}"
     
-    #sorts by timeframe choice, or only the exact date if timeframe was left at the default. 
+    # Sorts by timeframe choice, or only the exact date if timeframe was left at the default. 
     if @search_params[:beforeafter] == "Before"
       @students = @students.where("graduation_date <= ?", Date.parse(@search_params[:graduation_date]))
     elsif @search_params[:beforeafter] == "After"
@@ -87,8 +88,8 @@ class StudentsController < ApplicationController
     end
   end
   if (@search_params[:major].present? == false) && (@search_params[:graduation_date].present? == false)
-    # if neither major nor date are supplied when search is pressed, this will ideally throw an error.
-    # for now it just shows none.
+    # If neither major nor date are supplied when search is pressed, this will ideally throw an error.
+    # For now it just shows none.
     @students = @students.none
   end
   if params[:show_all]

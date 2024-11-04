@@ -11,7 +11,8 @@
     <div>
       <%= form.label :graduation_date, "Select Graduation Date", class: "form-label" %>
       <%= form.date_field :graduation_date, value: params.dig(:search, :graduation_date), name: 'search[graduation_date]', class: "form-control" %>
-   
+    </div>
+    
     <div>
       <%= form.submit "Search", class: "btn btn-primary" %>
     </div>
